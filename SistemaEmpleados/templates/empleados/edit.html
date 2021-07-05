@@ -1,0 +1,59 @@
+{% include '/layouts/header.html'%}
+
+
+{% for empleado in empleados%}
+
+
+<form action="/update/{{empleado.0}}" method="POST" enctype="multipart/form-data">
+
+<br>
+    <div class="card">
+        <div class="card-header">
+            Editar Empleado
+        </div>
+        <div class="card-body">
+            <h4 class="card-title">Datos del empleado</h4>
+            <p class="card-text">
+
+
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" value="{{empleado[1]}}" id="nombre" class="form-control">
+
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="text" name="correo" value="{{empleado[2]}}" id="correo" class="form-control">
+
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Foto:</label>
+                <img class="img-thumbnail" width="100" src="{{url_for('uploads', nombreFoto=empleado[3])}}">
+                <input type="file" name="foto" value="{{empleado[2]}}" id="foto" class="form-control">
+
+            </div>
+
+
+            <input type="hidden" name="id" value="{{empleado[0]}}">
+            <br>
+
+            <div class="form-group">
+
+                <input type="submit" value="Modificar" class="btn btn-success">
+                 <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+            </div>
+
+
+
+
+            </p>
+        </div>
+    </div>
+
+
+</form>
+{%include '/layouts/footer.html'%}
+
+{%endfor%}
